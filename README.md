@@ -1,6 +1,4 @@
-### Probot_exe > GitHut App which execute your selected PR Code
-#### Demo Video :
-https://github.com/jayrambagal/probot_exe/assets/94613732/0d1adc58-78cd-4f5b-ab1d-d14ddbb3583b
+###  GitHub App which executes your selected PR Code
 
 ### 1. App Overview:
 #### Description: 
@@ -24,10 +22,9 @@ https://github.com/jayrambagal/probot_exe/assets/94613732/0d1adc58-78cd-4f5b-ab1
 - Install dependencies using `npm install`.
 - Run the app using - `npm start`
 
-![Capture](https://github.com/jayrambagal/probot_exe/assets/94613732/0039d0ae-ad96-42f8-8e50-b96d03e17139)
 
 - Go to `localhost:3000`, register with your GitHub account, and grant the required permissions.
-- then It automatically setup your .env file with following env variables on your local
+- then It automatically sets your .env file with the following env variables on your local
     - WEBHOOK_PROXY_URL,
     - APP_ID,
     - PRIVATE_KEY,
@@ -35,11 +32,11 @@ https://github.com/jayrambagal/probot_exe/assets/94613732/0d1adc58-78cd-4f5b-ab1
     - GITHUB_CLIENT_ID,
     - GITHUB_CLIENT_SECRET,
 
-- Add your openai API key in env variable.
+- Add your openai API key in the env variable.
     - OPENAI_API_KEY,
 - Then **restart** your server
 
-**Note :** make sure You gave the permission of you GitHubApp through GitHub developers settings > **permission-on-pull-requests**
+**Note:** Make sure You permitted you GitHubApp through GitHub developers settings > **permission-on-pull-requests**
 - Pull requests
 - related comments 
 - assignees
