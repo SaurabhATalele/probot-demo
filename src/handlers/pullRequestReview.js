@@ -1,5 +1,15 @@
+const geminiService = require("../services/geminiService");
 const openaiService = require("../services/openaiService");
 
+const updateReviewComment = async (context, comment_id, body) => {
+  // Edit the last comment with the execute/explain updated body
+  await context.octokit.pulls.updateReviewComment({
+    owner: context.repo().owner,
+    repo: context.repo().repo,
+    comment_id,
+    body,
+  });
+};
 module.exports = (app) => {
   app.on("pull_request_review", async (context) => {
     const { payload } = context;
@@ -20,21 +30,16 @@ module.exports = (app) => {
       // Get the latest comment
       const latestComment = reviewComments.data[0];
 
-      if (latestComment && latestComment.body === "/execute") {
-        const aiOutput = await openaiService(latestComment.diff_hunk);
-        const updatedCommentBody = `${latestComment.body}\n\n ${aiOutput}`;
-
-        // Edit the last comment with the execute/explain updated body
-        await context.octokit.pulls.updateReviewComment({
-          owner: context.repo().owner,
-          repo: context.repo().repo,
-          comment_id: latestComment.id,
-          body: updatedCommentBody,
-        });
-
-        // console.log(
-        //   `Replied to the last comment on PR #${prNumber}: ${updatedCommentBody}`
-        // );
+      if (latestComment) {
+        const aiOutput = await geminiService(
+          latestComment.diff_hunk,
+          latestComment.body.split("/")[1]
+        );
+        if (aiOutput === "Invalid operation") {
+          console.log("Invalid operation");
+          return;
+        }
+        updateReviewComment(context, latestComment.id, aiOutput);
       } else {
         console.log(`No action comments on PR #${prNumber}`);
       }

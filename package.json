@@ -1,11 +1,11 @@
 {
-  "name": "code_bot",
+  "name": "code_wise_bot",
   "version": "1.0.0",
   "private": true,
-  "description": "bot which executes the code",
-  "author": "jayram bagal",
+  "description": "A github bot which executes the code also does code review and provides suggestions to improve the code quality.",
+  "author": "Shyam Karale",
   "license": "ISC",
-  "homepage": "https://github.com//",
+  "homepage": "https://github.com/",
   "keywords": [
     "probot",
     "github",
@@ -16,6 +16,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@google/genai": "^0.7.0",
     "openai": "^4.14.0",
     "probot": "^12.2.4"
   },
